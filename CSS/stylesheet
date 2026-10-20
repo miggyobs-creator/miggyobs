@@ -1,0 +1,16 @@
+/* Make the logo bigger without resizing the navbar */
+.navbar .brand img {
+    width: 200px;
+    height: auto;
+    max-width: none;
+    display: block;
+    object-fit: contain;
+}
+
+/* Keep the navbar height consistent */
+.navbar {
+    min-height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

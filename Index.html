@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MIGUEL | Digital World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;800&family=Nunito:wght@500;700&family=Orbitron:wght@800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root{
+  --blue:#1763A6; --navy:#174A7E; --cyan:#29B6E6; --light:#A8E4FF; --pale:#EAF8FF; --white:#FFFFFF; --gray:#F2F5F8;
+  --bg:#fff; --text:#174A7E; --card:#fff;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+,::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Nunito',system-ui,sans-serif;font-size:1.05rem;line-height:1.6;overflow-x:hidden;
+  background-image:radial-gradient(var(--light) 1.2px,transparent 1.4px);background-size:22px 22px;animation:dots 30s linear infinite}
+@keyframes dots{to{background-position:22px 22px}}
+h1,h2,h3{font-family:'Orbitron','Exo 2',sans-serif;margin:0;line-height:1.1;text-transform:uppercase}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* ===== Header ===== */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-bottom:4px solid var(--navy);box-shadow:0 4px 0 var(--light)}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px}
+.logo{display:block;width:170px;height:60px;animation:float 4s ease-in-out infinite;transition:filter .3s}
+.logo:hover{filter:drop-shadow(0 0 8px var(--cyan))}
+.logo img,.logo svg{width:100%;height:100%;object-fit:contain;display:block}
+nav ul{display:flex;gap:10px;list-style:none;margin:0;padding:0}
+nav a{position:relative;display:block;overflow:hidden;padding:8px 18px;border:3px solid var(--blue);border-radius:999px;background:#fff;font:800 .95rem 'Exo 2',sans-serif;text-decoration:none;color:var(--navy);transition:transform .25s,box-shadow .25s,color .25s;z-index:0}
+nav a::before{content:"";position:absolute;inset:0;background:var(--cyan);transform:translateX(-101%);transition:transform .3s;z-index:-1}
+nav a:hover,nav a:focus-visible{transform:translateY(-3px);box-shadow:0 5px 0 var(--light),0 0 14px rgba(41,182,230,.6);color:#fff}
+nav a:hover::before,nav a:focus-visible::before{transform:none}
+nav a::after{content:"";position:absolute;left:18px;right:18px;bottom:4px;height:3px;border-radius:3px;background:#fff;transform:scaleX(0);transition:transform .3s}
+nav a:hover::after{transform:scaleX(1)}
+.burger{display:none;width:48px;height:48px;border:3px solid var(--blue);border-radius:14px;background:#fff;cursor:pointer;padding:0}
+.burger span{display:block;width:22px;height:3px;background:var(--navy);margin:5px auto;border-radius:3px;transition:transform .3s,opacity .3s}
+.burger[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ===== Buttons ===== */
+.btn{display:inline-block;padding:12px 26px;border:3px solid var(--navy);border-radius:999px;font:800 1rem 'Exo 2',sans-serif;text-decoration:none;color:#fff;cursor:pointer;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));background-size:200% 100%;box-shadow:0 5px 0 var(--navy),0 8px 16px rgba(23,99,166,.3);transition:transform .2s,background-position .4s,box-shadow .2s}
+.btn:hover{transform:scale(1.06);background-position:100% 0;box-shadow:0 5px 0 var(--navy),0 0 20px rgba(41,182,230,.8)}
+.btn:active{transform:translateY(4px) scale(.98);box-shadow:0 1px 0 var(--navy)}
+.btn.alt{background:#fff;color:var(--navy)}
+.btn.alt:hover{background:var(--pale)}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:70px 0 90px;overflow:hidden;background:linear-gradient(180deg,#fff 0%,var(--pale) 100%)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center;position:relative}
+.hero h1{font-size:clamp(2.2rem,6vw,4.4rem);font-weight:900;color:var(--blue);
+  -webkit-text-stroke:0;text-shadow:3px 3px 0 #fff,-3px -3px 0 #fff,3px -3px 0 #fff,-3px 3px 0 #fff,0 0 0 var(--navy),6px 6px 0 var(--cyan),9px 9px 0 var(--navy)}
+.hero p.sub{font-size:1.25rem;font-weight:700;max-width:30ch;margin:22px 0 28px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:16px}
+.hero-art{position:relative;aspect-ratio:1;max-width:420px;width:100%;margin:0 auto;display:grid;place-items:center}
+/* Die-cut sticker frame (layered outlines like the logo) */
+.sticker{position:relative;border:5px solid var(--navy);outline:8px solid #fff;border-radius:34px;box-shadow:0 0 0 14px var(--light),0 0 0 18px var(--cyan),0 14px 28px rgba(23,99,166,.35);background:var(--pale);overflow:hidden}
+.hero-art .sticker{width:78%;aspect-ratio:1;display:grid;place-items:center;transform:rotate(-4deg)}
+.ph{width:100%;height:100%;display:grid;place-items:center;text-align:center;font:800 .9rem 'Exo 2';color:var(--blue);
+  background:radial-gradient(var(--cyan) 1.5px,transparent 1.8px) 0 0/10px 10px,var(--pale)}
+.sticker img,.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.swoosh{position:absolute;left:-2%;bottom:6px;width:60%;pointer-events:none}
+
+/* stars & sparkles */
+.deco{position:absolute;pointer-events:none;z-index:1}
+.deco svg{display:block;width:100%;height:100%}
+.float{animation:float 5s ease-in-out infinite}
+.drift{animation:drift 7s ease-in-out infinite}
+.spin{animation:spin 14s linear infinite}
+.shimmer{animation:shimmer 3s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+@keyframes drift{50%{transform:translateX(14px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{50%{opacity:.45;filter:brightness(1.4)}}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.7) translateY(20px)}to{opacity:1;transform:none}}
+.in-1{animation:rise .8s .1s both}.in-2{animation:rise .8s .45s both}.in-3{animation:pop .7s .8s both}.in-4{animation:pop .7s 1s both}
+.hero-art{animation:pop .9s .5s both}
+
+/* ===== Sections ===== */
+section{padding:70px 0}
+.title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:var(--blue);text-align:center;margin-bottom:40px;text-shadow:3px 3px 0 var(--light)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch}
+.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:5px solid var(--navy);border-radius:28px;padding:26px;
+  box-shadow:8px 8px 0 var(--light),0 12px 24px rgba(23,99,166,.18);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-8px);box-shadow:10px 14px 0 var(--cyan),0 0 26px rgba(41,182,230,.5)}
+.card h2{font-size:1.5rem;color:var(--navy);margin:20px 0 10px}
+.card p{margin:0 0 20px;flex:1}
+.card .btn{align-self:flex-start}
+.card.c1{border-style:solid}
+.card.c1::before{content:"";position:absolute;inset:8px;border:3px dotted var(--light);border-radius:20px;pointer-events:none}
+.card.c2{border-color:var(--cyan);box-shadow:8px 8px 0 var(--navy)}
+.card.c3{background:linear-gradient(180deg,var(--pale),#fff 60%);box-shadow:0 0 0 6px #fff,0 0 0 10px var(--blue),0 14px 24px rgba(23,99,166,.25)}
+.card .thumb{overflow:hidden;border-radius:18px;border:4px solid var(--navy);aspect-ratio:4/3}
+.card .thumb>*{transition:transform .4s}
+.card:hover .thumb>*{transform:scale(1.07)}
+.avatar{width:150px;height:150px;aspect-ratio:1;border-radius:50%;margin:0 auto;border:5px solid var(--navy);outline:6px solid #fff;box-shadow:0 0 0 10px var(--light);overflow:hidden;position:relative;z-index:1}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.card.c1 h2{text-align:center;margin-top:26px}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.mini .sticker{border-width:3px;outline-width:3px;border-radius:14px;aspect-ratio:1;box-shadow:0 0 0 4px var(--light),0 0 0 6px var(--cyan);transition:transform .3s}
+.mini .sticker:hover{transform:scale(1.12) rotate(2deg);z-index:2}
+
+/* reveal on scroll (only when JS is on) */
+.js .reveal{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .reveal.show{opacity:1;transform:none}
+
+/* ===== Featured ===== */
+.featured{background:var(--pale);position:relative;border-radius:60px 60px 0 0;margin-top:20px}
+.featured .box{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative}
+.featured h2{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--blue);margin-bottom:16px;text-shadow:3px 3px 0 #fff}
+.featured .sticker{aspect-ratio:16/11;transform:rotate(2deg)}
+.wave{display:block;width:100%;height:50px;margin-bottom:-1px}
+
+/* ===== Contact ===== */
+.contact{text-align:center;position:relative}
+.contact p{max-width:46ch;margin:0 auto 28px}
+.social{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.social .btn{padding:11px 22px}
+
+/* ===== Footer ===== */
+footer{background:var(--navy);color:#fff;padding:40px 0 30px;position:relative;border-top:6px solid var(--cyan);overflow:hidden}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+footer .brand{font:900 1.8rem 'Orbitron',sans-serif;text-shadow:3px 3px 0 var(--blue)}
+footer ul{display:flex;flex-wrap:wrap;gap:18px;list-style:none;margin:0;padding:0}
+footer a{text-decoration:none;font-weight:800;border-bottom:3px solid transparent}
+footer a:hover{border-color:var(--cyan)}
+footer small{flex-basis:100%;text-align:center;color:var(--light)}
+
+/* ===== Responsive ===== */
+@media (max-width:980px){
+  .cols{grid-template-columns:repeat(2,1fr)}
+  .cols .c3{grid-column:1/-1}
+}
+@media (max-width:760px){
+  .burger{display:block}
+  nav{position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:4px solid var(--navy);max-height:0;overflow:hidden;transition:max-height .4s}
+  nav.open{max-height:380px}
+  nav ul{flex-direction:column;padding:16px 20px}
+  nav a{text-align:center;padding:14px}
+  .logo{width:140px;height:50px}
+  .hero{padding:44px 0 60px}
+  .hero .wrap,.featured .box{grid-template-columns:1fr}
+  .hero-art{max-width:300px;order:-1}
+  .hero p.sub{max-width:none}
+  .cols{grid-template-columns:1fr}
+  .btn{padding:14px 26px}
+  .deco.hide-m{display:none}
+  .featured{border-radius:40px 40px 0 0}
+  section{padding:50px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  ,::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG shapes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="star" viewBox="0 0 100 100"><path d="M50 4l14 30 33 4-24 23 6 33-29-16-29 16 6-33L3 38l33-4z" fill="currentColor" stroke="#174A7E" stroke-width="5" stroke-linejoin="round"/></symbol>
+    <symbol id="spark" viewBox="0 0 100 100"><path d="M50 0C54 32 68 46 100 50 68 54 54 68 50 100 46 68 32 54 0 50 32 46 46 32 50 0z" fill="currentColor"/></symbol>
+    <symbol id="dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <!-- LOGO: drop your file at images/logo.png. If missing, the built-in wordmark shows. -->
+    <a class="logo" href="#home" aria-label="Miguel home">
+      <img src="images/logo.png" alt="Miguel logo" id="logoImg" onerror="this.replaceWith(document.getElementById('logoFallback').content.cloneNode(true))">
+    </a>
+    <template id="logoFallback">
+      <svg viewBox="0 0 170 60" role="img" aria-label="Miguel logo">
+        <rect x="4" y="14" width="200" height="36" rx="18" fill="#174A7E" stroke="#29B6E6" stroke-width="3"/>
+        <text x="85" y="40" text-anchor="middle" font-family="Orbitron,sans-serif" font-weight="900" font-size="22" font-style="italic" fill="#fff">M:GUEL</text>
+      </svg>
+    </template>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav id="menu" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<style>
+/* Logo size */
+.logo img,
+#logoImg {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Keep the logo aligned in the navigation bar */
+.site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+} </style>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="home" style="padding-top:70px">
+  <div class="deco float" style="top:40px;left:5%;width:46px;height:46px;color:var(--cyan)"><svg><use href="#star"/></svg></div>
+  <div class="deco spin hide-m" style="top:90px;left:46%;width:34px;height:34px;color:var(--cyan)"><svg><use href="#spark"/></svg></div>
+  <div class="deco drift" style="bottom:70px;left:44%;width:16px;height:16px;color:var(--cyan)"><svg><use href="#dot"/></svg></div>
+  <div class="deco float hide-m" style="bottom:40px;right:4%;width:60px;height:60px;color:var(--light)"><svg><use href="#star"/></svg></div>
+  <div class="deco spin" style="top:50px;right:8%;width:40px;height:40px;color:var(--cyan)"><svg><use href="#spark"/></svg></div>
+  <div class="wrap">
+    <div>
+      <h1 class="in-1"> Hi! I'm Miguel Obin </h1>
+      <p class="sub in-2"> An aspiring Bachelor of Secondary Education Teacher to make a difference! </p>
+      <div class="actions">
+        <a class="btn in-3" href="#about">Get to know me</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg class="swoosh shimmer" viewBox="0 0 300 80" fill="none" aria-hidden="true"><path d="M4 8C20 70 180 78 296 66" stroke="#29B6E6" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="deco float" style="top:2%;right:2%;width:70px;height:70px;color:var(--cyan)"><svg><use href="#star"/></svg></div>
+      <div class="deco spin" style="bottom:2%;right:6%;width:54px;height:54px;color:var(--cyan)"><svg><use href="#spark"/></svg></div>
+      <div class="sticker">
+        <!-- Replace with: <img src="images/hero.jpg" alt="Anime illustration"> -->
+        <div class="ph"><img src="Images/Teacher 1.jfif" width="500"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THREE COLUMNS ===== -->
+<section id="columns" aria-label="Homepage highlights">
+  <div class="wrap cols">
+    <article class="card c1 reveal" id="about" style="--d:0s">
+      <div class="deco float" style="top:-22px;right:18px;width:42px;height:42px;color:var(--cyan)"><svg><use href="#star"/></svg></div>
+      <div class="avatar"><img src="Images/Teacher 3.jfif" alt="ProfilePhoto" width="300" height="250"></div>
+      <section>
+        <h2>About me</h2>
+        <p>Hi! My name is Miguel Angelo Henry G. Obin, a Bachelor of Secondary Education (BSED) teacher passionate about learning, teaching, and inspiring others. Would you like to know more about me, my journey, and my goals as an educator? Click the button below to discover more about who I am!</p>
+      </section>
+      <a class="btn" href="aboutus.html">View More</a>
+      <style>
+/* About Me card */
+#about {
+    position: relative;
+    overflow: visible;
+}
+
+/* Profile picture container */
+#about .avatar {
+    position: relative;
+    width: 210px;
+    height: 210px;
+    margin: -80px auto 25px;
+    border: 7px solid #A5E5FF;
+    border-radius: 50%;
+    padding: 8px;
+    background: white;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+/* Profile picture */
+#about .avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 7px solid #174A7E;
+}
+</style>
+    </article>
+
+    <article class="card c2 reveal" id="gallery" style="--d:.15s">
+      <div class="deco drift" style="top:-14px;left:20px;width:16px;height:16px;color:var(--cyan)"><svg><use href="#dot"/></svg></div>
+      <div class="deco spin" style="top:-20px;right:22px;width:38px;height:38px;color:var(--cyan)"><svg><use href="#spark"/></svg></div>
+      <div class="thumb sticker" style="border-radius:18px;aspect-ratio:4/3"><img src="images/gallerybg 1.jpg" alt="Gallery artwork 1" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'Gallery 1'}))"></div>
+      <div class="mini">
+      </div>
+      <section>
+        <h2>My gallery</h2>
+        <p>i love to explore places! Take pictures of ethereal things and more.</p>
+      </section>
+      <a class="btn" href="gallery.html">View More</a>
+    </article>
+    <article class="card c3 reveal" id="contact">
+    
+        <div class="thumb sticker">
+            <img src="images/contactbg 3.jpg" alt="Contact">
+        </div>
+        <section>
+          <h2>CONTACT</h2>
+          <p>
+              Creating lesson plans, Teaching students,
+              Engaging them in fun activities.
+          </p>
+        </section>
+        
+    
+        <a class="btn" href="contact.html">View More</a>
+    
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="deco float" style="top:12px;left:3%;width:26px;height:26px;color:var(--cyan)"><svg><use href="#star"/></svg></div>
+  <div class="deco spin" style="bottom:14px;right:4%;width:26px;height:26px;color:var(--cyan)"><svg><use href="#spark"/></svg></div>
+  <div class="wrap">
+    <div><img src="Images/Logo.png" alt="Logo" width="210"></div>
+    <ul>
+      <li><img src="Images/Stars.png" alt="Stars" width="200">
+    </ul>
+    <small>&copy; 2026 Miguel. All rights reserved.</small>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu */
+const burger=document.getElementById('burger'), menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}});
+/* Scroll reveal: runs once per element */
+document.documentElement.classList.add('js');
+const els=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');o.unobserve(e.target)}}),{threshold:.15});
+  els.forEach(el=>io.observe(el));
+}else els.forEach(el=>el.classList.add('show'));
+</script>
+</body>
+</html>
+<style>/* Keep the logo completely static */
+.site-header .logo,
+.site-header .logo img,
+#logoImg {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+
+/* Prevent hover effects from moving the logo */
+.site-header .logo:hover,
+.site-header .logo img:hover,
+#logoImg:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}</style> 
+
+<style>
+  /* Make all cards equal in height and align them */
+  #columns .wrap.cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+      gap: 24px;
+  }
+  
+  /* Give every card the same layout */
+  #columns .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      padding: 20px;
+  }
+  
+  /* Make the images uniform */
+  #columns .card .thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      box-sizing: border-box;
+      flex-shrink: 0;
+  }
+  
+  #columns .card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+  }
+  
+  /* Remove unnecessary gaps around headings */
+  #columns .card h2 {
+      margin-top: 12px;
+      margin-bottom: 8px;
+  }
+  
+  /* Keep descriptions consistent */
+  #columns .card p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      line-height: 1.6;
+  }
+  
+  /* Push all View More buttons toward the bottom */
+  #columns .card .btn {
+      margin-top: auto;
+      align-self: flex-start;
+  }
+  
+  /* Let the Contact section fill the remaining card space */
+  #columns #contact {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+  }
+  
+  /* Adjust spacing on smaller screens */
+  @media (max-width: 900px) {
+      #columns .wrap.cols {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+  }
+  
+  @media (max-width: 600px) {
+      #columns .wrap.cols {
+          grid-template-columns: 1fr;
+          gap: 20px;
+      }
+  
+      #columns .card {
+          height: auto;
+      }
+  }
+  </style>
